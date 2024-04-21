@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        .header-buttons-align {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .header-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .headerimg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .settings-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .settings-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+        }
+
+        .form-field {
+            margin-bottom: 10px;
+        }
+
+        .form-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-buttons-align">
+        <button class="header-button" onclick="location.href='./index.html';">
+            <img src="Back image.png" alt="Back" style="width: 32px; height: 32px;">
+        </button>
+        <button class="header-button" onclick="saveSettings();">
+            <img src="Save image.png" alt="Save" style="width: 32px; height: 32px;">
+        </button>
+    </div>
+    <div class="settings-container">
+        <form class="settings-form">
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="John Doe">
+            </div>
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" value="john.doe@example.com">
+            </div>
+        </form>
+    </div>
+    <script>
+        function saveSettings() {
+            // Get the values from the input fields
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            // Send an HTTP request to the save_settings.php script
+            fetch('save_settings.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Check if the settings were saved successfully
+                if (data.success) {
+                    alert('Settings saved successfully');
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
