@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+    <div class="header-container">
+        <div class="header">
+            <a href="./Homepage.html" class="header-text">Pomodoro</a>
+            <div class="header-buttons-align">
+                <button class="header-button" onclick="location.href='./todo.html';">
+                    <img src="todo.png" alt="Tracking" style="width: 32px; height: 32px;">
+                </button>
+                <button class="header-button" onclick="location.href='./login.html';">
+                    <img src="profile image.png" alt="Profile" style="width: 32px; height: 32px;">
+                </button>
+                <button class="header-button" onclick="location.href='./profile.html';">
+                    <img src="Setting image.png" alt="Settings" style="width: 32px; height: 32px;">
+                </button>
+                <button class="header-button" onclick="location.href='./tracking.html';">
+                    <img src="Tracking image.png" alt="Tracking" style="width: 32px; height: 32px;">
+                </button>
+            </div>
+        </div>
+        <div class="form-container">
+            <form action="{{ url_for('login') }}" method="post">
+                <h2>Login now</h2>
+                <button onclick="loginWithGoogle()">Login with Google</button>
+
+                <script>
+                    function loginWithGoogle() {
+                        window.location.href = '/login';
+                    }
+                </script>
+                <input type="email" name="email" placeholder="enter your email" required class="box">
+                <input type="password" name="password" placeholder="enter your password" required class="box">
+                <input type="submit" name="submit" value="Login" class="btn">
+                <p>Don't have an account? <a href="register.html">Register now</a></p>
+            </form>
+        </div>
+
+</body>
+
+</html>

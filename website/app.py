@@ -18,7 +18,7 @@ app.config['MYSQL_PASSWORD'] = 'medu2004'
 app.config['MYSQL_DB'] = 'pomoweb'
 
 mysql = MySQL(app)
-@app.route('/')
+
 @app.route('/login', methods =['GET', 'POST'])
 def login():
 	msg = ''
@@ -37,7 +37,7 @@ def login():
 			return render_template('index.html', msg = msg)
 		else:
 			msg = 'Incorrect username / password !'
-	return render_template('C:/Users/lokes/OneDrive/Desktop/python/python projects/pbl/pomodoro-main/website/login.html', msg = msg)
+	return render_template('login.html', msg = msg)
 
 @app.route('/logout')
 def logout():
@@ -73,4 +73,4 @@ def register():
 	return render_template('register.html', msg = msg)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
